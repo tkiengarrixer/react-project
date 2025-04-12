@@ -1,0 +1,58 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    width: 100%;
+}
+
+.select-container {
+    width: 250px;
+}
+
+.select-box {
+    width: 100%;
+}
+
+.select-field {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* margin-bottom: 16px; */
+}
+
+.input-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    /* margin-bottom: 16px; */
+}
+
+.textarea-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    min-width: 250px;
+    /* margin-bottom: 16px; */
+}
+
+.form-item-input {
+    width: 250px;
+}
+
+:where(.css-dev-only-do-not-override-1emz71f).ant-form-vertical .ant-form-item:not(.ant-form-item-horizontal) .ant-form-item-control {
+    margin-bottom: 8px;
+}
+
+.form-item-textarea {
+    width: 100%;
+    min-width: 250px;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}

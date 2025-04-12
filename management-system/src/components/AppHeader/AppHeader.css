@@ -1,0 +1,55 @@
+.AppHeader {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    align-self: start;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0px 20px 0px 5px;
+    border-bottom: 1px solid var(--main-color);
+    background-color: var(--main-color);
+    box-sizing: border-box;
+    z-index: 500;
+}
+
+.logo {
+    border-radius: 50%;
+}
+
+.faculty-name {
+    font-family: SF Pro;
+    font-size: 0.8125rem;
+    color: var(--secondary-color);
+    font-weight: 500;
+    text-wrap: nowrap;
+}
+
+.system-name {
+    font-family: SF Pro Display;
+    font-size: 1.1875rem;
+    color: var(--secondary-color);
+    font-weight: bold;
+    text-wrap: nowrap;
+
+}
+
+.heading-logo {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0px;
+    box-sizing: border-box;
+}
+
+.bell-icon {
+    color: var(--secondary-color);
+    font-size: 16px !important;
+}
+
+.ant-drawer-mask {
+    backdrop-filter: blur(10px);
+}

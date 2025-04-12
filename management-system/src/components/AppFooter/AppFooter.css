@@ -1,0 +1,6 @@
+.AppFooter {
+    padding: 8px 16px;
+    border-top: 1px solid var(--main-color);
+    width: 100%;
+    box-sizing: border-box;
+}

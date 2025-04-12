@@ -1,0 +1,49 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+.sidebar-and-page-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex: 1;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.page-content-and-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  margin: 16px;
+  /* border: 1px solid var(--main-color); */
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  background-color: var(--secondary-color);
+}
+
+.ant-form-item-required {
+  font-weight: bold;
+}
+
+.submit-button {
+  background-color: var(--active-color);
+  width: 100px;
+}
+
+.cancel-button {
+  color: var(--main-color);
+  background-color: var(--secondary-color);
+  border: 1px solid var(--main-color);
+}
+
+.ant-message {
+  z-index: 9999 !important;
+}
