@@ -6,6 +6,7 @@ import PersonalInfo from "../../pages/personal-info/personal-info.jsx";
 import Settings from "../../pages/settings/settings.jsx";
 import RegisterProject from "../../pages/utilities/dang-ky-do-an/dang-ky-do-an.jsx";
 import SubmitFileProject from "../../pages/utilities/nop-do-an/nop-do-an.jsx";
+import ProgressReport from "../../pages/utilities/bao-cao-tien-do/bao-cao-tien-do.jsx";
 
 function AppRoutes() {
     return <Routes>
@@ -16,6 +17,7 @@ function AppRoutes() {
         <Route path="/cai-dat" element={<Settings />}></Route>
         <Route path="/tien-ich/dang-ky-do-an" element={<RegisterProject />}></Route>
         <Route path="/tien-ich/nop-do-an" element={<SubmitFileProject />}></Route>
+        <Route path="/tien-ich/bao-cao-tien-do" element={<ProgressReport />}></Route>
     </Routes>
 }
 

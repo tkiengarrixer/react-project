@@ -15,15 +15,15 @@ const theme = {
     // colorBgBase: "#051A53",
     // colorTextBase: "black",
     // colorBgSolidHover: "#414c6b",
-    colorPrimary: "#BC2626",
-    // colorPrimaryHover: "",
+    colorPrimary: "#BC2626",  //update
+    // colorPrimaryHover: "", 
     fontFamily: "Inter"
     //  -apple-system, SF Pro, BlinkMacSystemFont, Segoe UI
   },
   components: {
-    Menu: {
-      colorText: "#ffffff",
-    },
+    // Menu: {
+    //   colorText: "#ffffff",       //update
+    // },
 
     // Select: {
     //   colorPlaceholder: "#051A53",

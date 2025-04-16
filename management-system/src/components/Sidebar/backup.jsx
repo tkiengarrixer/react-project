@@ -54,12 +54,12 @@ function Sidebar() {
             }}
                 selectedKeys={selectedKey}
                 items={[
-                    { icon: <HomeIcon className="menu-icon" />, label: "Trang chủ", key: "/" },
-                    { label: "Tin tức", key: "/tin-tuc", icon: <NewsIcon className="menu-icon" /> },
-                    { label: "Thông báo", key: "/thong-bao", icon: <NotificationsIcon className="menu-icon" /> },
+                    { icon: <HomeIcon style={{ width: 20, height: 20, fill: "black" }} />, label: "Trang chủ", key: "/" },
+                    { label: "Tin tức", key: "/tin-tuc", icon: <NewsIcon style={{ width: 20, height: 20, fill: "black" }} /> },
+                    { label: "Thông báo", key: "/thong-bao", icon: <NotificationsIcon style={{ width: 20, height: 20, fill: "black" }} /> },
                     {
                         label: "Tiện ích",
-                        icon: <UtilitiesIcon className="menu-icon" />,
+                        icon: <UtilitiesIcon style={{ width: 20, height: 20, fill: "black" }} />,
                         children: [
                             { label: "Đăng ký đồ án", key: "/tien-ich/dang-ky-do-an" },
                             { label: "Báo cáo tiến độ đồ án", key: "/tien-ich/bao-cao-tien-do" },
@@ -68,8 +68,8 @@ function Sidebar() {
                             // { label: "Báo cáo đề tài NCKH", key: "/tien-ich/bao-cao-nghien-cuu-khoa-hoc" },
                         ]
                     },
-                    { label: "Thông tin cá nhân", key: "/thong-tin-ca-nhan", icon: <PersonalInfoIcon className="menu-icon" /> },
-                    { label: "Cài đặt", key: "/cai-dat", icon: <SettingsIcon className="menu-icon" /> },
+                    { label: "Thông tin cá nhân", key: "/thong-tin-ca-nhan", icon: <PersonalInfoIcon style={{ width: 20, height: 20, fill: "black" }} /> },
+                    { label: "Cài đặt", key: "/cai-dat", icon: <SettingsIcon style={{ width: 20, height: 20, fill: "black" }} /> },
 
                 ]}
             ></Menu>

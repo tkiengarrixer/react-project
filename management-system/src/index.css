@@ -1,6 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
 :root {
   --active-color: #BC2626;
   --main-color: #051A53;
+  /* --main-color: #bc2626; */
   --main-color-rgb: rgb(5, 26, 83);
   --secondary-color: #ffffff;
   --bg-color: #f5f5f7;

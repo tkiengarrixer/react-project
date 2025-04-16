@@ -47,3 +47,11 @@
 .ant-message {
   z-index: 9999 !important;
 }
+
+.ant-steps-item-title {
+  font-weight: bold;
+}
+
+.ant-message-notice-content span {
+  font-weight: 500;
+}

@@ -1,75 +1,84 @@
-import { Typography, Space, Form, Button, Tooltip, message, Alert, Upload, Card, Modal, Steps } from "antd";
+import { Typography, Select, Space, Form, Input, Button, Tooltip, message, Alert, Steps, Card } from "antd";
+import { FormOutlined, FileExclamationOutlined, FileDoneOutlined, LoadingOutlined, SmileOutlined, SolutionOutlined, UserOutlined, SendOutlined, CheckCircleOutlined } from "@ant-design/icons";
+
+import { React, useState } from "react";
+import "./bao-cao-tien-do.css";
 import TextArea from "antd/es/input/TextArea";
-import { UploadOutlined, FormOutlined, FileExclamationOutlined, FileDoneOutlined, LoadingOutlined, SmileOutlined, SolutionOutlined, UserOutlined } from '@ant-design/icons';
-import { useState } from "react";
-import "./nop-do-an.css";
 
 // Chú ý: <></> là React Fragment, dùng thay cho <div></div> khi return để tránh lồng nhiều div
-function SubmitFileProject() {
+function ProgressReport() {
     const studentName = "Trần Đào Trung Kiên";
     const studentId = "B23DCKH068";
     const studentClass = "D23CQKH02-B";
-    const canSubmit = true;
-    // const [canSubmit, setcanSubmit] = useState(true);
-    // const [type, setType] = useState("success");
+    const canReport = true;
+
     const period = "12/4/2025 - 20/4/2025"
+
 
     const [form] = Form.useForm();
     const [messageApi, contextHolder] = message.useMessage();
-    // const [fileList, setFileList] = useState([]);
-    // const [modalVisible, setModalVisible] = useState(false);
-    const [fileList, setFileList] = useState([]);
+    const [status, setStatus] = useState("idle");
 
+    // const handleSubmitFinish = (values) => {
+    //     setStatus("loading");
 
-    // const showMessage = (messageType, content) => {
-    //     messageApi.open({
-    //         type: messageType,
-    //         content,
-    //         duration: 10,
-    //     });
+    //     setTimeout(() => {
+    //         setStatus("done");
+
+    //         setTimeout(() => {
+    //             setStatus("idle")
+    //         }, 100000000);
+    //     }, 2000);
     // }
 
+    const changeIcon = () => {
+        if (status === "loading") return <LoadingOutlined />
+        if (status === "done") return <CheckCircleOutlined />;
+        else return <SendOutlined />
+    }
+
     const onFinish = (values) => {
-        console.log(values);
-        if (!canSubmit) {
+        console.log("uia");
+        if (!canReport) {
             messageApi.open({
                 type: "error",
-                content: "Đăng ký không thành công! Ngoài thời gian đăng ký.",
-            });
-            return;
-        }
-        if (!values.file || values.file.length === 0) {
-            messageApi.open({
-                type: "error",
-                content: "Đăng ký không thành công! Bạn chưa tải tệp lên.",
+                content: "Không thể gửi! Ngoài thời gian gửi báo cáo tiến độ.",
             });
             return;
         }
         messageApi.open({
             type: "loading",
-            content: "Đang nộp",
+            content: "Đang gửi",
             duration: "2.5"
-        }).then(() => message.success("Nộp file đồ án thành công", 5));
+        }).then(() => message.success("Gửi báo cáo tiến độ đồ án thành công"));
+        setStatus("loading");
+
+        setTimeout(() => {
+            setStatus("done");
+
+            setTimeout(() => {
+                setStatus("idle")
+            }, 100000000);
+        }, 2000);
     };
 
     const onFinishFailed = (errorInfo) => {
-        console.log(errorInfo);
-        if (!canSubmit) {
+        console.log("aiu");
+        if (!canReport) {
             messageApi.open({
                 type: "error",
-                content: "Đăng ký không thành công! Ngoài thời gian đăng ký.",
+                content: "Không thể gửi! Ngoài thời gian gửi báo cáo tiến độ.",
             });
             return;
         }
         messageApi.open({
             type: "error",
-            content: "Đăng ký không thành công! Vui lòng điền đầy đủ thông tin.",
-            duration: "10"
+            content: "Không thể gửi! Vui lòng điền đầy đủ thông tin.",
         });
     };
 
-    const alertcanSubmit = (canSubmit) => {
-        if (!canSubmit) {
+    const alertCanReport = (canReport) => {
+        if (!canReport) {
             return <>
                 <Alert
                     message="Ngoài thời gian nộp"
@@ -81,7 +90,7 @@ function SubmitFileProject() {
         }
         return <>
             <Alert
-                message={<Typography.Text>Trong thời gian nộp: {period}</Typography.Text>}
+                message={<Typography.Text>Trong thời gian gửi báo cáo: {period}</Typography.Text>}
                 type="warning"
                 showIcon
                 style={{ marginBottom: "16px" }}
@@ -89,41 +98,11 @@ function SubmitFileProject() {
         </>
     }
 
-    // const beforeUpload = (file) => {
-    //     if (fileList.length >= 1) {
-    //         setModalVisible(true);
-    //         return Upload.LIST_IGNORE;
-    //     }
-    //     setFileList([file]);
-    //     return false;
-    // }
-
-
-    const properties = {
-        name: "file",
-        multiple: false,
-        maxCount: 1,
-        beforeUpload: (file) => {
-            return false;
-        },
-    };
-
-    const onChange = (info) => {
-        let newFileList = [...info.fileList];
-
-        newFileList = newFileList.slice(-1);
-
-        setFileList(newFileList);
-        form.setFieldsValue({ file: newFileList })
-        const { status } = info.file;
-        if (status === "uploading") return;
-        if (status === "done") message.success(`Đã tải lên xong tệp ${info.file.name}`)
-        else if (status === "error") message.error(`Không thể tải lên tệp ${info.file.name}`)
-    }
+    // marginBottom: "16px", borderBottom: "1px solid var(--active-color)"
 
     return <>
         {contextHolder}
-        <Typography.Title level={4} style={{ fontWeight: "bold" }}>Nộp tệp đồ án tốt nghiệp</Typography.Title>
+        <Typography.Title level={4} style={{ fontWeight: "bold" }}>Báo cáo tiến độ đồ án</Typography.Title>
         <Card>
             <Steps
                 size="small"
@@ -139,20 +118,20 @@ function SubmitFileProject() {
                     },
                     {
                         title: "Báo cáo",
-                        status: "finish",
+                        status: "proccess",
                         description: "15/5 - 30/6/2025",
-                        icon: <FileExclamationOutlined />,
+                        icon: <LoadingOutlined />,
                     },
                     {
                         title: "Nộp tệp",
-                        status: "process",
+                        status: "wait",
                         description: "12/7 - 30/7/2025",
-                        icon: <LoadingOutlined />,
+                        icon: <FileDoneOutlined />,
                     },
                 ]}
             />
 
-            {alertcanSubmit(canSubmit)}
+            {alertCanReport(canReport)}
 
             <Alert
                 message="Thông tin sinh viên"
@@ -223,61 +202,64 @@ function SubmitFileProject() {
 
                     }}
                 >
-                    <b>7. Mong muốn: </b>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, debitis nihil? Fugiat harum cum nobis accusantium temporibus at molestiae fugit quasi expedita, neque omnis id autem eaque dolor quas labore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque saepe illo corrupti quo dolorem autem animi, voluptatem illum consequuntur vel, vero repellat molestiae eos. Recusandae, necessitatibus? Placeat voluptatem sint aliquid!
+                    <b>7. những vấn đề đang gặp: </b>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, debitis nihil? Fugiat harum cum nobis accusantium temporibus at molestiae fugit quasi expedita, neque omnis id autem eaque dolor quas labore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque saepe illo corrupti quo dolorem autem animi, voluptatem illum consequuntur vel, vero repellat molestiae eos. Recusandae, necessitatibus? Placeat voluptatem sint aliquid!
                 </Typography.Paragraph>
             </Card>
 
             <div className="form-container">
+
                 <Form
                     form={form}
-                    name="upload-form"
+                    name="basic"
                     layout="vertical"
                     style={{
                         width: "100%"
                     }}
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
-                    disabled={!canSubmit}
+                    disabled={!canReport}
                 >
 
-                    <div className="upload-container">
+                    <div className="textarea-container">
                         <Form.Item
-                            label="Tệp đồ án"
-                            name="file"
-                            rules={[{ required: true, message: "Cần tải lên tệp" }]}
-                            valuePropName="fileList"
-                            getValueFromEvent={(e) => Array.isArray(e) ? e : e?.fileList}
-                            className="form-item-upload"
+                            label="Sơ lược"
+                            name="brief"
+                            rules={[{ required: true, message: "Cần nhập sơ lược" }]}
+                            className="form-item-textarea"
                         >
-                            <Tooltip title="Nộp tệp đồ án tại đây">
-                                <Upload.Dragger
-                                    name="file"
-                                    customRequest={({ onSuccess }) => {
-                                        setTimeout(() => {
-                                            onSuccess("ok");
-                                        }, 1000);
-                                    }}
-                                    beforeUpload={(file) => {
-                                        return true;
-                                    }}
-                                    onChange={onChange}
-                                    fileList={fileList}
-                                    maxCount={1}
-                                    multiple={false}
-                                    className="dragger"
-                                    style={{ width: "100%" }}
-                                >
-                                    <p className="upload-icon">
-                                        <UploadOutlined />
-                                    </p>
-                                    <p className="upload-text">Nhấn hoặc kéo tệp vào đây để tải lên</p>
-                                    <p className="upload-hint">Chỉ hỗ trợ tải lên một tệp</p>
-                                </Upload.Dragger>
-                            </Tooltip>
+                            <TextArea className="text-input" placeholder="Nhập sơ lược" />
                         </Form.Item>
+
+                        <Form.Item
+                            label="Khó khăn"
+                            name="difficulty"
+                            rules={[{ required: true, message: "Cần nhập dự kiến" }]}
+                            className="form-item-textarea"
+                        >
+                            <TextArea className="text-input" placeholder="Nhập dự kiến" />
+                        </Form.Item>
+
+                        <Form.Item
+                            label="Dự kiến"
+                            name="expect"
+                            rules={[{ required: true, message: "Cần nhập những dự kiến" }]}
+                            className="form-item-textarea"
+                        >
+                            <TextArea className="text-input" placeholder="Nhập những vấn đề đang gặp" />
+                        </Form.Item>
+
                     </div>
 
-                    <div className="button-container">
+                    <div className="button-link-container">
+                        <Form.Item
+                            label="Liên kết"
+                            name="link"
+                            rules={[{ required: true, message: "Cần nhập liên kết" }]}
+                            className="form-item-input"
+                        >
+                            <Input className="text-input" placeholder="Nhập đường link" />
+                        </Form.Item>
+
                         <Space>
                             <Tooltip title="Xoá tất cả dữ liệu vừa nhập">
                                 <Form.Item>
@@ -286,10 +268,10 @@ function SubmitFileProject() {
                                     </Button>
                                 </Form.Item>
                             </Tooltip>
-                            <Tooltip title="Nộp tệp đồ án, chú ý phải điền và chọn đầy đủ thông tin">
+                            <Tooltip title="Nộp đơn đăng ký, chú ý phải điền và chọn đầy đủ thông tin">
                                 <Form.Item>
-                                    <Button className="submit-button" type="primary" htmlType="submit">
-                                        Nộp
+                                    <Button className="submit-button" type="primary" htmlType="submit" loading={status === "loading"} icon={changeIcon()}>
+                                        Gửi
                                     </Button>
                                 </Form.Item>
                             </Tooltip>
@@ -298,21 +280,8 @@ function SubmitFileProject() {
                     </div>
                 </Form>
             </div >
-
-            {/* <Modal
-            title="Lỗi!"
-            open={modalVisible}
-            centered
-            onOk={() => setModalVisible(false)}
-            onCancel={() => setModalVisible(false)}
-            okText="Đồng ý"
-            cancelText="Huỷ"
-        >
-            <p>Bạn chỉ được phép tải lên tối đa 1 tệp</p>
-
-        </Modal> */}
         </Card>
     </>
 }
 
-export default SubmitFileProject
+export default ProgressReport

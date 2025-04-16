@@ -28,7 +28,7 @@ function AppHeader() {
 
         <Space>
             <Tooltip title="Thông báo">
-                <Button type="primary" onClick={showDrawer} style={{ backgroundColor: "var(--main-color)" }}>
+                <Button type="primary" onClick={showDrawer} style={{ backgroundColor: "var(--active-color)" }}>
                     <Badge count={20} size="small">
                         <BellFilled className="bell-icon" />
                     </Badge>
